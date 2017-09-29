@@ -19,4 +19,4 @@ Cmp.o: Cmp.c
 	gcc -c -fPIC Cmp.c
 
 clean:
-	rm -f *.o *.so binary Evgeniy_Onegin_BETTER.txt Evgeniy_Onegin_DA_BEST.txt
+	rm -f *.o *.so binary Evgeniy_Onegin_BETTER.txt Evgeniy_Onegin_DA_REVERCE.txt
