@@ -30,12 +30,3 @@ char** StringtoLines(char* filestr, int* linesnum)
 
         return LinesPtr;
 }
-
-
-void FPrintLines(const char* FileName, char** lines, int numl)
-{
-        FILE* New = fopen(FileName, "w");
-
-        for(int i = 0; i < numl; i++)
-                fprintf(New, "%s\n", lines[i]);
-}
