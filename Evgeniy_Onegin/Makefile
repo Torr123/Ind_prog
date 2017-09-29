@@ -1,7 +1,7 @@
 # Makefile for Evgeniy_Onegin project
 
-binary: Evgeniy_Onegin.o libevg.so
-	gcc -o binary Evgeniy_Onegin.o -L. -levg -Wl,-rpath,.
+evgen.exe: Evgeniy_Onegin.o libevg.so
+	gcc -o evgen.exe Evgeniy_Onegin.o -L. -levg -Wl,-rpath,.
 
 Evgeniy_Onegin.o: Evgeniy_Onegin.c
 	gcc -c Evgeniy_Onegin.c
@@ -9,14 +9,14 @@ Evgeniy_Onegin.o: Evgeniy_Onegin.c
 libevg.so: Str.o File.o Cmp.o
 	gcc -shared -o libevg.so Str.o File.o Cmp.o
 
-Str.o: Str.c
-	gcc -c -fPIC Str.c
+Str.o: lib/Str.c
+	gcc -c -fPIC lib/Str.c
 
-File.o: File.c
-	gcc -c -fPIC File.c
+File.o: lib/File.c
+	gcc -c -fPIC lib/File.c
 
-Cmp.o: Cmp.c
-	gcc -c -fPIC Cmp.c
+Cmp.o: lib/Cmp.c
+	gcc -c -fPIC lib/Cmp.c
 
 clean:
-	rm -f *.o *.so binary Evgeniy_Onegin_BETTER.txt Evgeniy_Onegin_DA_REVERCE.txt
+	rm -f *.o *.so evgen.exe Evgeniy_Onegin_BETTER.txt Evgeniy_Onegin_DA_REVERCE.txt
