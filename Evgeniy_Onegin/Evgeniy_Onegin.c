@@ -11,11 +11,11 @@ int main(int argc, char* argv[])
 	char* Out_File = "Evgeniy_Onegin_BETTER.txt";
 	char* Out_File_Rev = "Evgeniy_Onegin_DA_REVERCE.txt";
 	char* In_File = "Evgeniy.txt";
-
+					
 	int r = 0, abc = 0; 		//Это то чего я хотел - более интересная реализация этой идеи будет потом
-								//А так каждая функция должна выполнять одну логическую функцию
-								//Можно выделить обработку аргументов коммадной строки в отдельную функцию, а эти значения сделать глобальными
-								//Но это на твое усмотрение	
+					//А так каждая функция должна выполнять одну логическую функцию
+					//Можно выделить обработку аргументов коммадной строки в отдельную функцию, а эти значения сделать глобальными
+					//Но это на твое усмотрение	
 	
 	for(int i = 0; i < argc; i++)
 	{
@@ -31,8 +31,8 @@ int main(int argc, char* argv[])
 			Out_File_Rev = argv[i + 1];
 	}
 
-	char* Roman = ReadbinFile(In_File);
-
+	char* Roman = ReadbinFile(In_File);  	//АЛЯРМ!!! Я ставлю свой последний шекель, что ты выделяешь динамически память
+						//А где free() равное количеству alloc'ов? - память же утекает!
 	int NumOfLines = 0;
 
 	char** Lines = StringtoLines(Roman, &NumOfLines);
