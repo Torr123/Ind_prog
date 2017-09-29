@@ -19,5 +19,10 @@ int main()
 
 	FPrintLines(OUT_FILE1,Lines,NumOfLines);
 
+	Rev_Lines(Lines, NumOfLines);
+	qsort(Lines,NumOfLines, sizeof(char **), Cmp);
+	Rev_Lines(Lines, NumOfLines);
+
+	FPrintLines(OUT_FILE2,Lines,NumOfLines);
 	return 0;
 }

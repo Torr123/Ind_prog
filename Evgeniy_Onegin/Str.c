@@ -30,3 +30,31 @@ char** StringtoLines(char* filestr, int* linesnum)
 
         return LinesPtr;
 }
+
+
+void Reverce(char * line)
+{
+        if(line == NULL)
+	{
+		printf("Reverce:ERROR line not found");
+		abort();
+	}
+
+        char buf = '\0';
+
+        int st = strlen(line);
+
+        int strl = st / 2;
+
+        for(int i = 0; i < strl; i++)
+        {
+                buf = line[st - 1 - i];
+                line[st - 1 - i] = line[i];
+                line[i] = buf;
+        }
+}
+
+void Rev_Lines(char ** Lines,int numoflines)
+{
+	for(int i = 0; i < numoflines; i++) Reverce(Lines[i]);
+}
