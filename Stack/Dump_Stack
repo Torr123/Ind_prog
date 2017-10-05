@@ -1,0 +1,35 @@
+CStack [ 0x7ffc5d422c10 ] (ok)
+{
+	MaxCount = 5;
+	count = -1;\???
+	data [ 5 ] [ 0x2365010 ] (ok)
+}
+
+CStack [ 0x7ffc8920a660 ] (ok)
+{
+	MaxCount = 5;
+	count = -1;\???
+	data [ 5 ] [ 0x2516010 ] (ok)
+}
+
+CStack [ 0x7fffa76903a0 ] (ok)
+{
+	MaxCount = 4;
+	count = -1;\???
+	data [ 4 ] [ 0x1da4010 ] (ok)
+}
+
+CStack [ 0x7fff8fa08990 ] (ok)
+{
+	MaxCount = 4;
+	count = -1;\???
+	data [ 4 ] [ 0xe4e010 ] (ok)
+}
+
+CStack [ 0x7fffeb276f30 ] (ok)
+{
+	MaxCount = 5;
+	count = -1;\???
+	data [ 5 ] [ 0x1229010 ] (ok)
+}
+
