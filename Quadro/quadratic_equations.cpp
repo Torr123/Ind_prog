@@ -5,7 +5,7 @@
 #include <math.h>		//В настройках своей среды можно настроить автозамену табов на пробелы.
 #include<cassert>
 
-constexpr int SS_INF_ROOTS = 9 //Можно использовать си++ лайфхаки вроде констант времени компиляции (constexpr int SS_INF_ROOTS = 9) - они лучше тупой подстановки define
+constexpr int SS_INF_ROOTS = 9; //Можно использовать си++ лайфхаки вроде констант времени компиляции (constexpr int SS_INF_ROOTS = 9) - они лучше тупой подстановки define
 
 int SolveSquare(double a, double b, double c, double* x1, double* x2);
 
