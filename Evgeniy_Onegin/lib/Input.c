@@ -1,8 +1,9 @@
-#include <string.h>
+#include<assert.h>
+#include<string.h>
 
 void Input_out(int argc,char** argv,char** Out_File,char** Out_File_Rev,char** In_File,int* r,int* abc)
 {
-
+        assert(argv != NULL && Out_File != NULL && Out_File_Rev != NULL && In_File != NULL && r != NULL && abc != NULL);
         for(int i = 0; i < argc; i++)
         {
                 if(strcmp(argv[i], "-r") == 0)
