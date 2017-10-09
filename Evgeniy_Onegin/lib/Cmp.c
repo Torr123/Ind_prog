@@ -1,9 +1,11 @@
 #include<string.h>
 #include<ctype.h>
+#include<assert.h>
 #include"evg.h"
 
 int Cmp(const void* l, const void* l1)
 {
+	assert(l != NULL && l1 != NULL);
 	const char* line = *(const char **)l;
 	const char* line1 = *(const char **)l1;
 
