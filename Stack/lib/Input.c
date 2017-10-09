@@ -3,7 +3,8 @@
 #include <stdlib.h>
 void Input_out(int argc,char** argv,struct CStack* st)
 {
-	//argv = NULL, st = NULL?
+	assert(argv != NULL);
+	assert(st != NULL);
         for(int i = 0; i < argc; i++)
         {
                 if(strcmp(argv[i], "-mas") == 0)
