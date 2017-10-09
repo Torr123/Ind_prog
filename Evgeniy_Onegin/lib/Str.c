@@ -1,23 +1,28 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<assert.h>
 #include"evg.h"
 
 
 
 char** StringtoLines(char* filestr, int* linesnum)
 {
+	assert(filestr != NULL);
+	assert(linesnum != NULL);
 	//Указатели на нуль
 	//<-- Можно переписать короче и быстрее через strchr() - много функций стандартной библиотеки ассемблерно оптимизированы
         int count = 0;
         int o = strlen(filestr);
-        for(int i = 0; i < o; i++)
-                if(filestr[i] == '\n')
-                        {count++; filestr[i] = '\0';}
+	char* line_pointer = filestr;
+	char* EOL = NULL;
+        while(EOL = strchr(line_pointer, '\n'))
+                        {count++; *(EOL) = '\0'; line_pointer = EOL + 1;}
 	//-->
 	
         *linesnum = count;
         char** LinesPtr = (char **) calloc(count, sizeof(char *));
+	assert(LinesPtr != NULL);
 	//А если не выделило память?
         //А free() где?
 	
@@ -64,6 +69,7 @@ void Reverce(char * line)
 
 void Rev_Lines(char ** Lines, int numoflines)
 {
+	assert(Lines != NULL);
 	//Указатель на нуль
 	for(int i = 0; i < numoflines; i++) Reverce(Lines[i]);
 }
