@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
-#define START_STACK_SIZE 5
+#define START_STACK_SIZE 5 //А можно константой
 
 #define ASSERT_OK(stack_pointer) if(StackOk(stack_pointer)) \
 	{\
