@@ -72,4 +72,4 @@ void Rev_Lines(char ** Lines, int numoflines)
 	assert(Lines != NULL);
 	//Указатель на нуль
 	for(int i = 0; i < numoflines; i++) Reverce(Lines[i]);
-}
+} 
