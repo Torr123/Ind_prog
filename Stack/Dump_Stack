@@ -33,3 +33,120 @@ CStack [ 0x7fffeb276f30 ] (ok)
 	data [ 5 ] [ 0x1229010 ] (ok)
 }
 
+CStack [0x7fff0a5349f0] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 5;
+	count = 0;
+	canary2 = 90\ok
+	hash = 0\ok\OK
+	data [ 5 ] [ 0x5580f6ca4014 ] (ok)
+}
+
+CStack [0x7ffc319e1de0] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 5;
+	count = 1;
+	canary2 = 90\ok\OK
+	data [ 5 ] [ 0x56459d227010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 90;\ok
+}
+
+CStack [0x7ffd72c05590] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 5;
+	count = 2;
+	canary2 = 90\ok
+	hash = 44\ERROR!!!\OK
+	data [ 5 ] [ 0x55b881cef010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 90;\ok
+}
+
+CStack [0x7fff42f8b970] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 5;
+	count = 1;
+	canary2 = 90\ok
+	hash = 360\ERROR!!!\OK
+	data [ 5 ] [ 0x560d4519c010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 90;\ok
+}
+
+CStack [0x7fff1179b530] (ok)
+{
+	canary1 = 0\ERROR!!!
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ok\OK
+	data [ 10 ] [ 0x55d905e0b010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 12;
+		[ 4 ] = 10;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffedf29dea0] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ERROR!!!\OK
+	data [ 10 ] [ 0x5613a7a1f010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = -1;
+		[ 4 ] = 10;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffcf5aab120] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ok\OK
+	data [ 10 ] [ 0x560ca1543010 ] (ok)
+		[ 0 ] = 0;\ERROR!!!
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 12;
+		[ 4 ] = 10;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffd18002910] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ok\OK
+	data [ 10 ] [ 0x10f1010 ] (ok)
+		[ 0 ] = 0;\ERROR!!!
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 12;
+		[ 4 ] = 10;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+

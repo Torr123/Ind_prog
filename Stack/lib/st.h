@@ -5,6 +5,10 @@
 
 #define START_STACK_SIZE 5
 
+#define CANARY 90
+
+#define DO_HASH 1
+
 #define ASSERT_OK(stack_pointer) if(StackOk(stack_pointer)) \
 	{\
 	 printf("\t%s\n", StackOk(stack_pointer));\
@@ -15,11 +19,15 @@ typedef int Stack_Type;
 
 struct CStack
 {
+	Stack_Type canary1;
 	Stack_Type* data;
 	int MaxCount;
 	int count;
+	long int hash;
+	Stack_Type canary2;
 };
 
+long int Hsh(void* mass, size_t SizeOfElem, size_t AmountOfElem);
 void Stack_Dump(struct CStack* st);
 const char* StackOk(const struct CStack* st);
 void Stack_Make(struct CStack* st);

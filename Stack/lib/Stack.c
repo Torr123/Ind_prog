@@ -2,44 +2,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
-/* Почему вместо этого не заинклюдить st.h?
-#define START_STACK_SIZE 5
+#include"st.h"
 
-#define ASSERT_OK(stack_pointer) if(StackOk(stack_pointer)) \
-	{\
-	 printf("\t%s\n", StackOk(stack_pointer));\
-	 Stack_Dump(stack_pointer); assert(0); \
-	}
-
-typedef int Stack_Type;
-
-struct CStack
-{
-	Stack_Type* data;
-	int MaxCount;
-	int count;
-};
-*/
 void Stack_Dump(struct CStack* st)
 {
 	FILE* Dump = fopen("Dump_Stack", "at");
-	//Dump = null?	
+	assert(Dump != NULL);
 	fprintf(Dump,"CStack ");
 
-	/*
-	if(st == NULL)
-	{
-		fprintf(Dump,"[\"NULL\"] (ERROR!!!)");
-	}
-	else
-	{
-		fprintf(Dump, "[ %p ] (ok)", st);
-	}
-	*/
-	
-	//а можно короче: fprintf(Dump, "[%p] (%s)", (st) ? st : NULL, (st) ? "ok" : "ERROR!!!");
-	
-	fprintf(Dump,"\n{\n\tMaxCount = %i;\n\tcount = %i;", st->MaxCount, st->count);
+	fprintf(Dump, "[%p] (%s)", (st) ? st : NULL, (st) ? "ok" : "ERROR!!!");
+
+	fprintf(Dump,"\n{\n\tcanary1 = %d%s\n\tMaxCount = %i;\n\tcount = %i;\n\tcanary2 = %d%s", st->canary1, st->canary1 == CANARY ? "\\ok" : "\\ERROR!!!", st->MaxCount, st->count, st->canary2, st->canary2 == CANARY ? "\\ok" : "\\ERROR!!!");
+
+	if(DO_HASH)fprintf(Dump, "\n\thash = %ld%s", st->hash, Hsh((void*)(st->data + 1), sizeof(Stack_Type), st->count) == st->hash ? "\\ok" : "\\ERROR!!!");
 
 	if(st->count > st->MaxCount || st->count < 0)
 	{
@@ -56,9 +31,11 @@ void Stack_Dump(struct CStack* st)
 	{
 		fprintf(Dump, "\n\tdata [ %i ] [ %p ] (ok)", st->MaxCount, st->data);
 
-		for(int i = 0; i < st->count; i++)
+		for(int i = 0; i < st->count + 2; i++)
 		{
 			fprintf(Dump, "\n\t\t[ %i ] = %i;", i, st->data[i]);
+			if(i == 0 || i == st->count + 1)
+				fprintf(Dump, "%s", st->data[i] == CANARY ? "\\ok" : "\\ERROR!!!");
 		}
 	}
 
@@ -73,15 +50,23 @@ const char* StackOk(const struct CStack* st)
 	if(st->count < 0) return "Stack count less then null";
 	if(st-> data == NULL) return "Stack data pointer is NULL";
 	if(st->count > st->MaxCount) return "Stack count more then MaxCount";
+	if(st->canary1 != CANARY || st->canary2 != CANARY) return "Stack is dumped!";
+	if(st->data[1 + st->count] != CANARY || st->data[0] != CANARY) return "Data is dumped!";
+	if(DO_HASH && Hsh((void*)(st->data + 1), sizeof(Stack_Type), st->count) != st->hash) return "Hash is wrong";
 	return 0;
 }
 
 void Stack_Make(struct CStack* st)
 {
-	//st = 0 ?
-	st->data = (Stack_Type*)calloc(START_STACK_SIZE, sizeof(Stack_Type));
+	assert(st != NULL);
+	st->canary1 = CANARY;
+	st->canary2 = CANARY;
+	st->data = (Stack_Type*)calloc(START_STACK_SIZE+1, sizeof(Stack_Type));
+	st->data[0] = CANARY;
+	st->data[1] = CANARY;
 	st->count = 0;
 	st->MaxCount = START_STACK_SIZE;
+	if(DO_HASH)st->hash = Hsh((void*)st->data, sizeof(Stack_Type), st->count);
 
 	ASSERT_OK(st);
 }
@@ -91,11 +76,12 @@ void Stack_Push(struct CStack* st, Stack_Type val)
 {
 	ASSERT_OK(st);
 
-	st->data[st->count++] = val;
+	st->data[1 + st->count++] = val;
+	st->data[1 + st->count] = CANARY;
 
-	if(st->count > (st->MaxCount * 4)/5){st->data = (Stack_Type *)realloc((st->data), sizeof(Stack_Type)*(st->MaxCount += st->MaxCount/3));}
-	//можно вынести в отдельные функции
-	
+	if(st->count+2 > (st->MaxCount * 4)/5){st->data = (Stack_Type *)realloc((st->data), sizeof(Stack_Type)*(st->MaxCount += st->MaxCount/3));}
+
+        if(DO_HASH)st->hash = Hsh((void*)(st->data + 1), sizeof(Stack_Type), st->count);
 	ASSERT_OK(st);
 }
 
@@ -103,11 +89,12 @@ Stack_Type Stack_Pop(struct CStack* st)
 {
         ASSERT_OK(st);
 
-	Stack_Type buf = st->data[--st->count];
+	Stack_Type buf = st->data[1 + --st->count];
+        st->data[1 + st->count] = CANARY;
 
 	if(st->count < (st->MaxCount)/3 && st->count > 0){ st->data = (Stack_Type *)realloc((st->data), sizeof(Stack_Type)*(st->MaxCount /= 2));}
-	//можно вынести в отдельные функции
-	
+
+	if(DO_HASH)st->hash = Hsh((void*)(st->data + 1), sizeof(Stack_Type), st->count);
 	ASSERT_OK(st);
 
 	return buf;
@@ -116,9 +103,9 @@ Stack_Type Stack_Pop(struct CStack* st)
 
 void Stack_Dest(struct CStack* st)
 {
-	ASSERT_OK(st); 
+	ASSERT_OK(st);
 	free(st->data);
-	//Если ты вызовешь assert_OK здесь - то скорее всего он тебе не выдаст ошибок => ты можешь работать с зомби =>
-	//Как настоящий джентельмен ты можешь загаживать эти данные, обнулять указатели и тд..
-	//Тем более два вызова деструктора от одного объекта крашнет все, а ты это своей проверкой не ловишь
+	st->data = NULL;
+
 }
+
