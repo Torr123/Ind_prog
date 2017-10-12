@@ -150,3 +150,71 @@ CStack [0x7ffd18002910] (ok)
 		[ 6 ] = 90;\ok
 }
 
+CStack [0x7fff68e9d6e0] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ERROR!!!\OK
+	data [ 10 ] [ 0x253b010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 12;
+		[ 4 ] = 0;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffda0b6b860] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = 452\ERROR!!!\OK
+	data [ 10 ] [ 0xe3f010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = 10;
+		[ 2 ] = 11;
+		[ 3 ] = 12;
+		[ 4 ] = 0;
+		[ 5 ] = 12;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffd1fff1070] (ok)
+{
+	canary1 = 90\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90\ok
+	hash = -150\ERROR!!!\OK
+	data [ 10 ] [ 0x1d64010 ] (ok)
+		[ 0 ] = 90;\ok
+		[ 1 ] = -1531287023;
+		[ 2 ] = 4;
+		[ 3 ] = 4;
+		[ 4 ] = 0;
+		[ 5 ] = 4;
+		[ 6 ] = 90;\ok
+}
+
+CStack [0x7ffe0923e610] (ok)
+{
+	canary1 = 90.000000\ok
+	MaxCount = 10;
+	count = 5;
+	canary2 = 90.000000\ok
+	hash = 11588\ERROR!!!\OK
+	data [ 10 ] [ 0x818010 ] (ok)
+		[ 0 ] = 90.000000;\ok
+		[ 1 ] = 10.000000;
+		[ 2 ] = 11.000000;
+		[ 3 ] = 12.000000;
+		[ 4 ] = 0.000000;
+		[ 5 ] = 12.000000;
+		[ 6 ] = 90.000000;\ok
+}
+

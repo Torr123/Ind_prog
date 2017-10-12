@@ -5,6 +5,8 @@
 
 #define START_STACK_SIZE 5
 
+#define Stack_Type_String "%lf"
+
 #define CANARY 90
 
 #define DO_HASH 1
@@ -15,7 +17,7 @@
 	 Stack_Dump(stack_pointer); assert(0); \
 	}
 
-typedef int Stack_Type;
+typedef double Stack_Type;
 
 struct CStack
 {

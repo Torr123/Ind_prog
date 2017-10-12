@@ -12,7 +12,11 @@ void Stack_Dump(struct CStack* st)
 
 	fprintf(Dump, "[%p] (%s)", (st) ? st : NULL, (st) ? "ok" : "ERROR!!!");
 
-	fprintf(Dump,"\n{\n\tcanary1 = %d%s\n\tMaxCount = %i;\n\tcount = %i;\n\tcanary2 = %d%s", st->canary1, st->canary1 == CANARY ? "\\ok" : "\\ERROR!!!", st->MaxCount, st->count, st->canary2, st->canary2 == CANARY ? "\\ok" : "\\ERROR!!!");
+	fprintf(Dump,"\n{\n\tcanary1 = ");
+	fprintf(Dump, Stack_Type_String, st->canary1);
+	fprintf(Dump,"%s\n\tMaxCount = %i;\n\tcount = %i;\n\tcanary2 = ", st->canary1 == CANARY ? "\\ok" : "\\ERROR!!!", st->MaxCount, st->count);
+	fprintf(Dump, Stack_Type_String, st->canary2);
+	fprintf(Dump, "%s", st->canary2 == CANARY ? "\\ok" : "\\ERROR!!!");
 
 	if(DO_HASH)fprintf(Dump, "\n\thash = %ld%s", st->hash, Hsh((void*)(st->data + 1), sizeof(Stack_Type), st->count) == st->hash ? "\\ok" : "\\ERROR!!!");
 
@@ -33,7 +37,9 @@ void Stack_Dump(struct CStack* st)
 
 		for(int i = 0; i < st->count + 2; i++)
 		{
-			fprintf(Dump, "\n\t\t[ %i ] = %i;", i, st->data[i]);
+			fprintf(Dump, "\n\t\t[ %d ] = ", i);
+			fprintf(Dump, Stack_Type_String, st->data[i]);
+			fprintf(Dump, ";");
 			if(i == 0 || i == st->count + 1)
 				fprintf(Dump, "%s", st->data[i] == CANARY ? "\\ok" : "\\ERROR!!!");
 		}
@@ -106,6 +112,5 @@ void Stack_Dest(struct CStack* st)
 	ASSERT_OK(st);
 	free(st->data);
 	st->data = NULL;
-
 }
 

@@ -14,10 +14,10 @@ int main(int argc,char* argv[])
         Stack_Push(&st, 10);
         Stack_Push(&st, 12);
 
-	//((int**)&st)[1][4] = 0; Проверка Хэша)
+	((double**)&st)[1][4] = 0; //Проверка Хэша)
 
 	printf("\n\t%i\n", st.count);
-	for(int i = st.count; i > 0; i--) printf("%i \n", Stack_Pop(&st));
+	for(int i = st.count; i > 0; i--) {printf(Stack_Type_String, Stack_Pop(&st)), printf("\n");}
 
 	Stack_Dest(&st);
 
