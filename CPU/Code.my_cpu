@@ -1,0 +1,19 @@
+push 4
+push 5
+popr eax
+out
+pushr eax
+pushr eax
+mul
+push 4
+push 6
+push -50
+mul
+mul
+sub
+sqrt
+out
+push 1
+sin
+out
+end
