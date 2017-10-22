@@ -1,0 +1,18 @@
+main:
+	in
+	popr ecx
+	push 1
+	popr eax
+loop:
+	pushr eax
+	pushr eax
+	mul
+	out
+	pushr eax
+	push 1
+	add
+	popr eax
+	pushr eax
+	pushr ecx
+	jne loop
+ret

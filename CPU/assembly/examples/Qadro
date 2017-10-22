@@ -1,0 +1,43 @@
+main:
+	in
+	in
+	in
+	popr ecx
+	popr ebx
+	popr eax
+	pushr ebx
+	pushr ebx
+	mul
+	push 4
+	pushr eax
+	pushr ecx
+	mul
+	mul
+	sub
+	sqrt
+	popr ecx # В ecx - дискриминант #
+	pushr ebx
+	push -1
+	mul
+	pushr ecx
+	sub
+	popr edx 
+        pushr eax
+        push 2
+        mul 
+        pushr edx
+	div
+	out # первый корень #
+        pushr ebx
+        push -1
+        mul
+        pushr ecx
+        add
+	popr edx
+	pushr eax
+	push 2
+	mul
+	pushr edx
+        div
+        out # второй #
+ret
