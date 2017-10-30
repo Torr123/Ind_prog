@@ -1,0 +1,43 @@
+#include<assert.h>
+#include<stdio.h>
+#include<stdlib.h>
+int Max_Size_Of_Verf_Mass = 0;
+int array_of_elements = 0;
+
+typedef double List_Elem_Type;
+
+#define List_Elem_Type_String "%lf"
+
+int First_Array_Of_List_Elements = 2;
+
+#define POISON 200
+
+struct List
+{
+	List_Elem_Type data;
+	struct List* next;
+	struct List* prev;
+} typedef List_Element;
+
+size_t List_Elem_Size = sizeof(List_Element);
+size_t List_Elem_Size_Ptr = sizeof(List_Element*);
+
+void List_Make(List_Element** head);
+void List_Dest(List_Element** head);
+void List_Elem_Make(List_Element** l_elem,List_Elem_Type l_data);
+void List_Elem_Dest(List_Element** l_elem);
+int List_All_Elem_Dest(List_Element** head);
+void List_Elem_Add_Next(List_Element* this_elem,List_Elem_Type l_data);
+void List_Elem_Add_Prev(List_Element* this_elem,List_Elem_Type l_data);
+int ind = 0;
+int List_Print(List_Element* head);
+List_Element* Next_Elem_Ptr(List_Element* l_elem);
+List_Element* Prev_Elem_Ptr(List_Element* l_elem);
+List_Element* Head_Ptr(List_Element* l_elem);
+List_Element* Last_Elem_Ptr(List_Element* l_elem);
+void List_Elem_Add_Beginning(List_Element* this_elem,List_Elem_Type l_data);
+void List_Elem_Add_End(List_Element* this_elem,List_Elem_Type l_data);
+int List_Dump(List_Element* l_elem);
+List_Element** List_Vereficator(List_Element* l_elem);
+List_Element* List_Find_Index(List_Element** mass_of_elem_ptr, int index);
+List_Element* List_Find_Data(List_Element** mass_of_elem_ptr, List_Elem_Type l_data);
