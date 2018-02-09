@@ -1,0 +1,14 @@
+main()
+{
+	x = 6;
+	y = 0;
+	scan(y,);
+
+	if(y > x)
+	{
+		z = x*y;
+		print(z,);
+	}
+	
+	return;
+}
